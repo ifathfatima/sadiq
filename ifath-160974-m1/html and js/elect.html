@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<title>
+electricity form
+</title>
+<script src="elect.js"></script>
+<style>
+	body{
+	border-style:double;
+	width:300px;
+	height:240px;
+	margin:100px 100px 100px 100px;
+	}
+</style>
+</head>
+<body>
+<form>
+<table>
+
+<caption><h3>Electricity Consumer Form</h3></caption>
+<tr>
+	<td>
+	Consumer No:
+	</td>
+	<td>
+	
+	<input type="number" name="cno" id="cno" maxlength="8" min="0"  max="99999999"   required/>
+	
+	</td>
+	<td><span id="cerror"</span></td>
+</tr>
+<tr>
+	<td>Consumer Name:</td>
+	<td>
+	<input type="text"   name="cname" id="cname"  pattern="[A-Z][A-Za-z]+" required />
+	
+	</td>
+	<td><span id="cnerror"></span></td>
+</tr>
+<tr>
+	<td>Email Address:</td>
+	<td>
+	<input type="email" id="ena" pattern="[a-z0-9A-Z]+[@][0-9a-zA-Z]+[.][a-zA-Z]+" required/>
+	</td>
+	<td><span id="error"></span></td>
+</tr>
+
+	<td>Number of Units:</td>
+	<td>
+		<input type="number" id="unit" required/>
+	
+	</td>
+	<td><span id="nerror"></span></td>
+</tr>
+<tr>
+	<td colspan="2">
+		<pre>   <button onclick="validate()" id="send">Calculate Electricity Charges and Display</button></pre>
+	</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

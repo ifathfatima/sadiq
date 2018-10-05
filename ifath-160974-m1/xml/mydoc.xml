@@ -1,0 +1,39 @@
+
+<consumer xmlns="http://www.capgemini.com" xmlns:xsi="http://www.w3.org/2001/XMLschema-instance"
+xsi:schemaLocation="http://www.capgemini.com consumer.xsd">
+<consumerno>1006</consumerno>
+<consumername>mahesh B</consumername>
+<email>bmahesh@yahoo.com</email>
+<unitsconsumed>720</unitsconsumed>
+
+
+<consumerno>1005</consumerno>
+<consumername>shrikant</consumername>
+<email>shrikant.shinde@gmail.com</email>
+<unitsconsumed>90</unitsconsumed>
+
+
+
+<consumerno>1004</consumerno>
+<consumername>manoj</consumername>
+<email>manoj@gmail.com</email>
+<unitsconsumed>780</unitsconsumed>
+
+
+
+
+<consumerno>1002</consumerno>
+<consumername>amey joshi</consumername>
+<email>amey.j@cg.com</email>
+<unitsconsumed>345</unitsconsumed>
+
+
+<consumerno>1001</consumerno>
+<consumername>seema joshi</consumername>
+<email>seema.joshi@gmail.com</email>
+<unitsconsumed>250</unitsconsumed>
+
+
+
+
+</consumer>

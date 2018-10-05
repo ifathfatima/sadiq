@@ -1,0 +1,165 @@
+create table electricity_consumer (
+              consumerNo number(8) primary key,
+              consumerName varchar2(20) not null,
+              emailId varchar2(35),
+              unitsConsumed number
+);
+
+--------------------------------------------
+
+
+create table electricity_bill (
+              billNo number primary key,
+              consumerNo number references electricity_consumer(consumerNo),
+              billAmount number,
+              billPaidDate date
+);  
+-----------------------------------------------------
+
+insert into electricity_consumer values(
+1001,'Seema Joshi',        'Seema.joshi@gmail.com', 250
+);
+ 
+insert into electricity_consumer values (
+1002, 'Amey Joshi',         'Amey.j@cg.com', 345
+);
+ 
+insert into electricity_consumer values(
+1003, 'Pravin',   'Pravin.t@cg.com',         457
+);
+ 
+insert into electricity_consumer values(
+1004, 'Manoj Kulkarni', 'manoj@gmail.com', 780
+);
+ 
+insert into electricity_consumer values(
+1005, 'Shrikant Shinde', 'Shrikant.shinde@gmailc.om',90
+);
+ 
+insert into electricity_consumer values(
+1006, 'Mahesh B', 'bMahesh@yahoo.com', 720
+);
+
+
+
+--------------------------------------
+
+
+insert into electricity_bill values(
+101,       1001,    440.45, '25-May-2017'
+);
+ 
+insert into electricity_bill values(
+102,       1002,    690,       '02-Jun-2018'
+);
+ 
+insert into electricity_bill values(
+103,       1001,    675,       '05-Aug-2017'
+);
+ 
+insert into electricity_bill values(
+104,       1004,    678,       '05-Aug-2000'
+);
+ 
+insert into electricity_bill values(
+105,       1005,    643,       '08-JAN-2001'
+);
+ 
+insert into electricity_bill values(
+106,       1004,    900,       '08-FEB-2010'
+);
+ 
+insert into electricity_bill values(
+107,       1003,    842,       '12-May-2001'
+);
+ 
+insert into electricity_bill values(
+108,       1002,    421,       '18-Sep-2009'
+);
+ 
+insert into electricity_bill values(
+109,       1005,    346,       '20-Aug-2005'
+);
+ 
+insert into electricity_bill values(
+110,       1005,    342,       '26-Jul-2001'
+);
+
+--------------------------------------------------
+1)
+create sequence billd_seq start with 111;
+
+
+
+
+create or replace procedure cal_ebill(cno in number) is
+              units electricity_consumer.unitsConsumed%TYPE;
+              ebill number;
+begin
+              select unitsConsumed into units from electricity_consumer where consumerNo=cno;
+              IF units <= 100 THEN
+                             ebill := units * 2.96;
+              ELSE
+                             ebill := units * 5.56;
+              END IF;
+              insert into electricity_bill values(billd_seq.nextval, cno, ebill, sysdate);
+exception
+	when NO_DATA_FOUND then
+	dbms_output.put_line('data not found');
+
+end;
+/
+
+
+
+
+--exec cal_ebill(1001) can't be used as we need to use a block for execution so i used the below block.
+select billd_seq.currval from dual;
+
+
+
+declare 
+begin
+cal_ebill(1008);
+end;
+/
+
+
+
+
+
+
+
+Q2:
+====
+1. select consumerName, consumerNo from electricity_consumer where unitsConsumed in (select max(unitsConsumed) from electricity_consumer);
+ 
+2. select consumerno, count(*) from electricity_bill group by consumerno having count(*) >= 2;
+ 
+3. select consumername from electricity_consumer where consumerno in (select consumerno from electricity_bill where extract(day from billPaidDate)>= 16);
+             
+ 
+Q3:
+===
+ 
+alter table electricity_consumer add billPaymentDate date;
+alter table electricity_consumer add billPaymentDueDate date;
+alter table electricity_consumer add constraint check_bd check  (billPaymentDueDate between billPaymentDate and (billPaymentDate)+7);
+
+
+
+--now if we try to enter billpayduedate  which is not in bertween of billpaydate and billpaydate+7 then the table wont accept it.
+
+--insert into electricity_consumer(billPaymentDate,billPaymentDueDate) values('05-oct-2018','15-oct-2018');
+ 
+
+
+
+
+
+
+
+
+
+
+
