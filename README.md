@@ -1,0 +1,2 @@
+# sadiq
+a-m-n
