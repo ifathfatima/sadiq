@@ -1,0 +1,5 @@
+2018-10-26 11:41:33 ERROR DemandDraftDAO:58 - Mobile Number has invalid characters/invalid length
+2018-10-26 11:42:03 ERROR DemandDraftDAO:73 - ORA-28000: the account is locked
+
+2018-10-26 11:42:03 ERROR DemandDraftDAO:69 - Couldn't connect with the database
+2018-10-26 14:23:15 INFO  DemandDraftDAO:65 - Added one row to the database
